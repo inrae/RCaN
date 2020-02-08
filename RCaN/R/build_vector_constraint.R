@@ -56,30 +56,37 @@ build_vector_constraint <- function(eq_constraint, symbolic_enviro) {
   }
 
   basic_constraint <- expand(numerator)
+  mycoeffs <- NULL
 
-
-
-
-  all_elements <- get_str(basic_constraint)
-  myelem <- strsplit(gsub(" ", "", gsub(
-    " +",
-    ",+1*",
-    gsub(" -", ",-1*", all_elements, fixed = TRUE),
-    fixed = TRUE
-  )), ",", fixed = TRUE)[[1]]
-  param_used <- sort(as.character(free_symbols(basic_constraint)))
-  if (length(myelem) > length(param_used)) {
-    #there is an intercept
-    param_used <- c("1", param_used)
+  if(get_type(basic_constraint) != "Add"){
+    if (get_type(basic_constraint) == "Symbol"){
+      mycoeffs <- 1
+      names(mycoeffs) <- get_str(basic_constraint)
+    } else {
+      return(
+        mycoeffs <- as.numeric(basic_constraint))
+        names(mycoeffs) <- "1"
+    }
+  } else {
+    mycoeffs <- sapply(as.list(get_args(basic_constraint)),function(e){
+      if(get_type(e) == "RealDouble"){
+        return(c("1"=as.numeric(e)))
+      } else if (get_type(e) == "Symbol"){
+        val <- 1
+        names(val) <- get_str(e)
+        return (val)
+      } else {
+        val <- as.numeric(as.list(get_args(e))[[1]])
+        names(val) <- get_str(as.list(get_args(e))[[2]])
+        return(val)
+      }
+      }
+    )
   }
-  coeff_const[, param_used] <-
-    mapply(function(expr, par){
-      mycoef <- eval(parse(text = gsub(
-        paste("\\*?", par, "$", sep = ""), "", expr
-        )))
-      ifelse(is.null(mycoef), 1, mycoef)
-      },
-      myelem,
-      ifelse(param_used != "1", param_used, ""))
+
+
+
+  coeff_const[, names(mycoeffs)] <- mycoeffs
+
   coeff_const
 }
