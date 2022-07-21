@@ -1,0 +1,10 @@
+--name RCaNconstructor
+--icon /Users/christianmullon/git/RCaN/RCaNconstructor/app-icon.icns
+--dest /Users/christianmullon/git/RCaN/RCaNconstructor/target
+--main-jar RCaNconstructor-1.0.jar
+--main-class fr.cm.RCaNMain.Start
+--input /Users/christianmullon/git/RCaN/RCaNconstructor/target/dependency
+--app-version 22.27.70916
+--runtime-image /Users/christianmullon/git/RCaN/RCaNconstructor/target/jvm-image
+--temp /Users/christianmullon/git/RCaN/RCaNconstructor/target/installer-work
+--mac-sign
