@@ -1,7 +1,7 @@
 // run with command
 // cscript add-change.js
 var installer = WScript.CreateObject("WindowsInstaller.Installer");
-var database = installer.OpenDatabase("RCaNconstructor-22.27.70916.msi", 1);
+var database = installer.OpenDatabase("RCaNconstructor-22.29.50525.msi", 1);
 var sql
 var view
 
