@@ -4,7 +4,7 @@
 --main-jar RCaNconstructor-1.0.jar
 --main-class fr.cm.RCaNMain.Start
 --input /Users/christianmullon/git/RCaN/RCaNconstructor/target/dependency
---app-version 22.30.13441
+--app-version 22.30.15311
 --runtime-image /Users/christianmullon/git/RCaN/RCaNconstructor/target/jvm-image
 --temp /Users/christianmullon/git/RCaN/RCaNconstructor/target/installer-work
 --mac-sign
